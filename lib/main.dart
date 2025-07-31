@@ -1,4 +1,7 @@
+import 'package:donut_app/pages/cart.dart';
 import 'package:donut_app/pages/home.dart';
+import 'package:donut_app/pages/profile.dart';
+import 'package:donut_app/pages/settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home : Home(),
       theme: ThemeData(primarySwatch: Colors.pink),
+      routes : {
+        '/cart': (context) => const CartPage(),
+        '/profile' : (context) => const ProfilePage(),
+        '/settings' : (context) => const Settings()
+      }
     );
   }
 }

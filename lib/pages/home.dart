@@ -14,6 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final bool _isDark = false;
 
   List<Widget> myTabs = const [
    MyTab(
@@ -39,81 +40,98 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: myTabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left : 24.0),
-            child: IconButton(
-              icon : Icon(
-                Icons.menu,
-                color: Colors.grey,
-                size : 36
-            ),
-            onPressed: () {},
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right : 24.0),
+      child: Theme(
+        data: _isDark ? ThemeData.dark() : ThemeData.light(),
+        child : Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
               child: IconButton(
-                onPressed: () {},
-                icon:Icon(
-                  Icons.person,
+                icon: Icon(
+                  Icons.settings,
                   color: Colors.grey,
-                  size : 36
-              ) 
-                 ),
-            )
-          ],
-        ),
-        body : Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 18.0),
-              child: Row(
-                children: const [
-                  Text('I Want to', 
-                  style: TextStyle(
-                    fontSize: 24,
-                    
-                  ),),
-                   Text(' EAT', 
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold
-                  ),),
-                ],
+                  size: 36,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
               ),
             ),
-      
-            const SizedBox(height: 24,),
-
-            TabBar(tabs: myTabs),
-
-            Expanded(
-              child: TabBarView(
-                children: [
-                //donut page
-                DonutTab(),
-
-                //burger page
-                BurgerTab(),
-
-                //smoothie page
-                SmoothieTab(),
-
-                //pancake page
-                PancakeTab(),
-
-                //pizza page
-                PizzaTab()
-
-              ]),
-            )
-          ],
-        )
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right : 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon:Icon(
+                        Icons.shopping_bag,
+                        color: Colors.grey,
+                        size : 36
+                      ),
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/cart');
+                      },
+                    ),
+                    IconButton(
+                      icon:Icon(
+                        Icons.person,
+                        color: Colors.grey,
+                        size : 36
+                      ),
+                      onPressed: () {
+                          Navigator.pushNamed(context, '/profile');
+                      },
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          body : Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
+                child: Row(
+                  children: const [
+                    Text('Welcome back Annuar', 
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 25,
+                    ),)
+                  ],
+                ),
+              ),
+        
+              const SizedBox(height: 10,),
+        
+              TabBar(tabs: myTabs),
+        
+              Expanded(
+                child: TabBarView(
+                  children: [
+                  //donut page
+                  DonutTab(),
+        
+                  //burger page
+                  BurgerTab(),
+        
+                  //smoothie page
+                  SmoothieTab(),
+        
+                  //pancake page
+                  PancakeTab(),
+        
+                  //pizza page
+                  PizzaTab()
+        
+                ]),
+              )
+            ],
+          )
+        ),
       ),
     );
   }

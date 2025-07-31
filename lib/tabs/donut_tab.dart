@@ -1,17 +1,17 @@
+import 'package:donut_app/utils/data.dart';
 import 'package:donut_app/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
-class DonutTab extends StatelessWidget {
+class DonutTab extends StatefulWidget {
+  const DonutTab({super.key});
 
+  @override
+  State<DonutTab> createState() => _DonutTabState();
+}
+
+class _DonutTabState extends State<DonutTab> {
   //list of donuts
 
-  List donutsOnSale = const [
-    ["Ice Cream", "36", Colors.blue, "lib/images/icecream_donut.png"],
-    ["Strawberry", "45", Colors.red, "lib/images/strawberry_donut.png"],
-    ["Chocolate", "84", Colors.brown, "lib/images/chocolate_donut.png"],
-    ["Grape Ape", "55", Colors.purple, "lib/images/grape_donut.png"],
-
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,11 @@ class DonutTab extends StatelessWidget {
       )
       , itemBuilder: (context, index) {
           return DonutTile(
-            donutFlavor: donutsOnSale[index][0],
-            donutColor: donutsOnSale[index][2],
-            donutPrice: donutsOnSale[index][1],
-            imageName: donutsOnSale[index][3]
+            id : donutsOnSale[index].id,
+            donutFlavor: donutsOnSale[index].donutName,
+            donutColor: donutsOnSale[index].donutColor,
+            donutPrice: donutsOnSale[index].donutPrice,
+            imageName: donutsOnSale[index].imageName
           );
       },
       ),
